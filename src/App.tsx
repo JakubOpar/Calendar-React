@@ -1,41 +1,13 @@
-import { useEffect, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
+import Header from "./components/Header/Header";
+import Calendar from "./components/Calendar/Calendar";
 
 function App() {
-  const [dbStatus, setDbStatus] = useState("checking...");
-
-  useEffect(() => {
-    async function check() {
-      try {
-        const res = await invoke<string>("db_test");
-        setDbStatus(res);
-      } catch (e) {
-        setDbStatus("backend error");
-      }
-    }
-
-    check();
-  }, []);
-
-  return (
-    <div style={styles.container}>
-      <h1>Calendar App (DEV)</h1>
-      <p>{dbStatus}</p>
-    </div>
-  );
+    return (
+        <div className="app">
+            <Header />
+            <Calendar />
+        </div>
+    );
 }
-
-const styles: { container: React.CSSProperties } = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "sans-serif",
-    background: "#0f0f0f",
-    color: "white"
-  }
-};
 
 export default App;
