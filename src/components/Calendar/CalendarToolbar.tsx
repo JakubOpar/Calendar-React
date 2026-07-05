@@ -37,7 +37,7 @@ function CalendarToolbar({ year, month, setYear, setMonth }: Props) {
 
             <button onClick={handlePrev}>‹</button>
 
-            <button onClick={handleToday}>Dziś</button>
+            <button onClick={handleToday}>Dzisiaj</button>
 
             <button onClick={handleNext}>›</button>
 
