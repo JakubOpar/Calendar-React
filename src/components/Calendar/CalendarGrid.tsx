@@ -2,12 +2,14 @@ import CalendarCell from "./CalendarCell";
 import { getWeekdayNames } from "../../utils/calendar";
 
 import type { CalendarWeek } from "../../types/calendar";
+import "./CalendarGrid.css";
 
 type Props = {
     matrix: CalendarWeek[];
+    onDayClick: (date: Date) => void;
 };
 
-function CalendarGrid({ matrix }: Props) {
+function CalendarGrid({ matrix, onDayClick }: Props) {
     const weekDays = getWeekdayNames();
 
     return (
@@ -26,7 +28,7 @@ function CalendarGrid({ matrix }: Props) {
             {matrix.map((week, i) => (
                 <div key={i} className="calendar-row">
                     {week.map((day, j) => (
-                        <CalendarCell key={j} day={day} />
+                        <CalendarCell key={j} day={day} onClick={() => onDayClick(day.date)} />
                     ))}
                 </div>
             ))}

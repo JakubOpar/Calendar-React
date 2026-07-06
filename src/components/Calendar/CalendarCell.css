@@ -1,0 +1,25 @@
+.calendar-cell {
+    margin: 2px;
+    padding: 8px;
+
+    min-height: 70px;
+
+    border: 1px solid #222;
+    border-radius: 8px;
+
+    background: white;
+
+    transition: transform .25s;
+}
+
+.calendar-cell:not(.calendar-cell--disabled):hover {
+    transform: scale(1.05);
+}
+
+.calendar-cell--disabled {
+    opacity: .3;
+}
+
+.calendar-cell--today {
+    background-color: #62c3d4;
+}

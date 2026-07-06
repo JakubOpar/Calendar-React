@@ -9,3 +9,4 @@ export interface CalendarDay {
 }
 
 export type CalendarWeek = CalendarDay[];
+export type CalendarView = "month" | "day";

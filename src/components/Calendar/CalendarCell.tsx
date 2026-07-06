@@ -1,12 +1,15 @@
 import type { CalendarDay } from "../../types/calendar";
+import "./CalendarCell.css";
 
 type Props = {
     day: CalendarDay;
+    onClick: () => void;
 };
 
-function CalendarCell({ day }: Props) {
+function CalendarCell({ day, onClick }: Props) {
     return (
         <div
+            onClick={onClick}
             className={`calendar-cell ${
                 day.isCurrentMonth ? "" : "calendar-cell--disabled"
             } ${

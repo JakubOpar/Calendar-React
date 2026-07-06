@@ -5,6 +5,8 @@ import {
     getToday
 } from "../../utils/calendar";
 
+import "./CalendarToolbar.css";
+
 type Props = {
     year: number;
     month: number;
@@ -35,11 +37,11 @@ function CalendarToolbar({ year, month, setYear, setMonth }: Props) {
     return (
         <div className="calendar-toolbar">
 
-            <button onClick={handlePrev}>‹</button>
+            <button onClick={handlePrev}>Poprzedni</button>
 
             <button onClick={handleToday}>Dzisiaj</button>
 
-            <button onClick={handleNext}>›</button>
+            <button onClick={handleNext}>Następny</button>
 
             <h2>
                 {getMonthName(month)} {year}
