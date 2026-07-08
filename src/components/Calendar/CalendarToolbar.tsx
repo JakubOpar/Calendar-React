@@ -10,11 +10,13 @@ import "./CalendarToolbar.css";
 type Props = {
     year: number;
     month: number;
-    setYear: (y: number) => void;
-    setMonth: (m: number) => void;
+    setYear: (year: number) => void;
+    setMonth: (month: number) => void;
+
+    onAddClick: () => void;
 };
 
-function CalendarToolbar({ year, month, setYear, setMonth }: Props) {
+function CalendarToolbar({ year, month, setYear, setMonth, onAddClick }: Props) {
 
     function handlePrev() {
         const result = previousMonth(year, month);
@@ -42,6 +44,13 @@ function CalendarToolbar({ year, month, setYear, setMonth }: Props) {
             <button onClick={handleToday}>Dzisiaj</button>
 
             <button onClick={handleNext}>Następny</button>
+
+            <button
+                className="calendar-toolbar__add-button"
+                onClick={onAddClick}
+            >
+                +
+            </button>
 
             <h2>
                 {getMonthName(month)} {year}

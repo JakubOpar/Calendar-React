@@ -4,6 +4,7 @@ import "./MonthView.css";
 
 import CalendarToolbar from "../../components/Calendar/CalendarToolbar";
 import CalendarGrid from "../../components/Calendar/CalendarGrid";
+import EventDialog from "../../components/Event/EventDialog";
 
 import {
     getMonthMatrix,
@@ -23,12 +24,21 @@ function MonthView({ setView, setSelectedDate }: Props) {
 
     const [year, setYear] = useState(today.year);
     const [month, setMonth] = useState(today.month);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const matrix = getMonthMatrix(year, month);
 
     function handleDayClick(date: Date) {
         setSelectedDate(date);
         setView("day");
+    }
+
+    function handleAddClick() {
+        setIsDialogOpen(true);
+    }
+
+    function handleCloseDialog() {
+        setIsDialogOpen(false);
     }
 
     return (
@@ -39,12 +49,20 @@ function MonthView({ setView, setSelectedDate }: Props) {
                 month={month}
                 setYear={setYear}
                 setMonth={setMonth}
+                onAddClick={handleAddClick}
             />
 
             <CalendarGrid
                 matrix={matrix}
                 onDayClick={handleDayClick}
             />
+
+            {isDialogOpen && (
+                <EventDialog
+                    open={isDialogOpen}
+                    onClose={() => setIsDialogOpen(false)}
+                />
+            )}
 
         </main>
     );

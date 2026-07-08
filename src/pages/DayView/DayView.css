@@ -34,12 +34,22 @@
 .day-view-grid {
     flex: 1;
     overflow-y: auto;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 
 .hour-row {
     display: flex;
     border-bottom: 1px solid #222;
     min-height: 60px;
+}
+
+.hour-row:nth-child(even) {
+    background-color: rgb(190, 205, 253);
+}
+
+.hour-row:last-child {
+    border-bottom: none;
 }
 
 .hour-label {
