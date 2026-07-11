@@ -48,7 +48,6 @@ export function getMonthMatrix(
             current.setDate(startDate.getDate() + week * 7 + day);
 
             currentWeek.push({
-
                 date: current,
 
                 day: current.getDate(),
@@ -59,8 +58,11 @@ export function getMonthMatrix(
 
                 isCurrentMonth: current.getMonth() === month,
 
-                isToday: isToday(current)
+                isToday: isToday(current),
 
+                isPast: isPast(current),
+
+                isFuture: isFuture(current),
             });
 
         }
@@ -116,4 +118,26 @@ export function getToday() {
         year: now.getFullYear(),
         month: now.getMonth()
     };
+}
+
+export function isPast(date: Date): boolean {
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    const compare = new Date(date);
+    compare.setHours(0, 0, 0, 0);
+
+    return compare < today;
+}
+
+export function isFuture(date: Date): boolean {
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    const compare = new Date(date);
+    compare.setHours(0, 0, 0, 0);
+
+    return compare > today;
 }

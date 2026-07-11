@@ -17,9 +17,16 @@
 }
 
 .calendar-cell--disabled {
-    opacity: .3;
+    background: #fafafa;
+    color: #c5c5c5;
+    border-color: #e8e8e8;
 }
 
 .calendar-cell--today {
     background-color: #62c3d4;
+}
+
+.calendar-cell--past {
+    background: #dee7e7;
+    color: #777;
 }
