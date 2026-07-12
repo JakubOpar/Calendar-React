@@ -1,23 +1,34 @@
-import HourRow from "./components/HourRow/HourRow";
+import TimeSegment from "./components/TimeSegment/TimeSegment";
 
 import "./TimeGrid.css";
 
+
 function TimeGrid() {
 
-    const hours = Array.from({ length: 24 }, (_, i) => i);
+
+    const segments = Array.from(
+        { length: 96 },
+        (_, index) => index
+    );
+
 
     return (
+
         <div className="time-grid">
 
-            {hours.map(hour => (
-                <HourRow
-                    key={hour}
-                    hour={hour}
+            {segments.map(segment => (
+
+                <TimeSegment
+                    key={segment}
+                    index={segment}
                 />
+
             ))}
 
         </div>
+
     );
 }
+
 
 export default TimeGrid;

@@ -1,0 +1,22 @@
+.hour-label {
+
+    width:70px;
+
+    padding-left:8px;
+
+    padding-top:5px;
+
+    font-size:12px;
+
+    color:#777;
+
+    border-right:1px solid #ddd;
+
+}
+
+
+.hour-label.empty {
+
+    color:transparent;
+
+}

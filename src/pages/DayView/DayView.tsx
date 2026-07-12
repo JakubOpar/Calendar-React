@@ -5,20 +5,24 @@ import "./DayView.css";
 import TimeGrid from "./components/TimeGrid/TimeGrid";
 import TaskPanel from "./components/TaskPanel/TaskPanel";
 
+
 type Props = {
     date: Date;
     setView: (view: CalendarView) => void;
 };
 
+
 function DayView({ date, setView }: Props) {
+
     return (
         <main className="day-view">
 
-            <div className="day-view-header">
+            <header className="day-view-header">
 
                 <button onClick={() => setView("month")}>
                     Wróć
                 </button>
+
 
                 <h2>
                     {date.toLocaleDateString("pl-PL", {
@@ -29,18 +33,20 @@ function DayView({ date, setView }: Props) {
                     })}
                 </h2>
 
-            </div>
+            </header>
 
-            <div className="day-view-content">
+
+            <section className="day-view-content">
 
                 <TimeGrid />
 
                 <TaskPanel />
 
-            </div>
+            </section>
 
         </main>
     );
 }
+
 
 export default DayView;

@@ -1,6 +1,14 @@
 .time-grid {
-    overflow-y: auto;
 
-    border: 1px solid gray;
-    border-radius: 8px;
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+
+    border:1px solid gray;
+
+    border-radius:8px;
+
 }
