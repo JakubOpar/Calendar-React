@@ -1,41 +1,85 @@
 import type { CalendarDay } from "../../types/calendar";
 
+import EventBadge from "../Event/EventBadge";
+
+import { getEventsForDate } from "../../services/events";
+
 import "./CalendarCell.css";
 
+
 type Props = {
+
     day: CalendarDay;
+
     onClick: () => void;
+
 };
+
 
 function CalendarCell({ day, onClick }: Props) {
 
-    const classNames = [
-        "calendar-cell",
 
-        !day.isCurrentMonth && "calendar-cell--disabled",
+    const dayEvents = getEventsForDate(day.date);
 
-        day.isToday && "calendar-cell--today",
-
-        day.isPast &&
-            day.isCurrentMonth &&
-            !day.isToday &&
-            "calendar-cell--past",
-
-        day.isFuture &&
-            day.isCurrentMonth &&
-            "calendar-cell--future"
-    ]
-        .filter(Boolean)
-        .join(" ");
 
     return (
+
         <div
-            className={classNames}
+
             onClick={onClick}
+
+            className={`
+                calendar-cell
+
+                ${
+                    !day.isCurrentMonth
+                    ? "calendar-cell--disabled"
+                    : ""
+                }
+
+                ${
+                    day.isToday
+                    ? "calendar-cell--today"
+                    : ""
+                }
+            `}
+
         >
-            <span>{day.day}</span>
+
+            <span className="calendar-cell-day">
+
+                {day.day}
+
+            </span>
+
+
+
+            <div className="calendar-events">
+
+
+                {
+                    dayEvents.map(event => (
+
+                        <EventBadge
+
+                            key={event.id}
+
+                            type={event.type}
+
+                        />
+
+                    ))
+                }
+
+
+            </div>
+
+
         </div>
+
     );
+
 }
+
 
 export default CalendarCell;

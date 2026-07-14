@@ -28,7 +28,17 @@ function CalendarGrid({ matrix, onDayClick }: Props) {
             {matrix.map((week, i) => (
                 <div key={i} className="calendar-row">
                     {week.map((day, j) => (
-                        <CalendarCell key={j} day={day} onClick={() => onDayClick(day.date)} />
+
+                        <CalendarCell
+
+                            key={j}
+
+                            day={day}
+
+                            onClick={() => onDayClick(day.date)}
+
+                        />
+
                     ))}
                 </div>
             ))}

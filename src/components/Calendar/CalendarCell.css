@@ -10,6 +10,12 @@
     background: white;
 
     transition: transform .25s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
 }
 
 .calendar-cell:not(.calendar-cell--disabled):hover {
@@ -29,4 +35,27 @@
 .calendar-cell--past {
     background: #dee7e7;
     color: #777;
+}
+
+
+.calendar-cell-day {
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.calendar-events {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    width:100%;
+
+    margin-top:8px;
+
 }
