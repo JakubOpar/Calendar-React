@@ -1,8 +1,7 @@
 import type { CalendarDay } from "../../types/calendar";
+import type { CalendarEvent } from "../../types/event";
 
 import EventBadge from "../Event/EventBadge";
-
-import { getEventsForDate } from "../../services/events";
 
 import "./CalendarCell.css";
 
@@ -11,15 +10,34 @@ type Props = {
 
     day: CalendarDay;
 
+    events: CalendarEvent[];
+
     onClick: () => void;
 
 };
 
 
-function CalendarCell({ day, onClick }: Props) {
+function CalendarCell({
+    day,
+    events,
+    onClick
+}: Props) {
 
 
-    const dayEvents = getEventsForDate(day.date);
+    const dayEvents = events.filter(event =>
+
+        event.date.getFullYear() === day.date.getFullYear()
+
+        &&
+
+        event.date.getMonth() === day.date.getMonth()
+
+        &&
+
+        event.date.getDate() === day.date.getDate()
+
+    );
+
 
 
     return (

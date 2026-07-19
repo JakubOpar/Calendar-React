@@ -12,10 +12,16 @@ export type CalendarEvent = {
 
     title: string;
 
+    description?: string;
+
     type: EventType;
 
     startTime?: string;
 
     endTime?: string;
+
+    hasReminder: boolean;
+
+    reminderDatetime?: string;
 
 };

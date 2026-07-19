@@ -1,18 +1,40 @@
+import { useEffect, useState } from "react";
+
 import "./EventsLayer.css";
 
-import { events } from "../../../../../../../services/events";
-
 import EventBlock from "../../EventBlock/EventBlock";
+
+import {
+    getEvents
+} from "../../../../../../../services/eventService";
+
+import type { CalendarEvent } from "../../../../../../../types/event";
 
 
 function EventsLayer() {
 
 
+    const [events, setEvents] =
+        useState<CalendarEvent[]>([]);
+
+
+
+    useEffect(() => {
+
+        getEvents()
+            .then(setEvents)
+            .catch(console.error);
+
+    }, []);
+
+
+
     const timedEvents = events.filter(
         event =>
-            event.startTime !== undefined &&
-            event.endTime !== undefined
+            event.startTime &&
+            event.endTime
     );
+
 
 
     return (
