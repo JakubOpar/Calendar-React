@@ -1,4 +1,9 @@
-export function timeToMinutes(time:string){
+export const SEGMENT_HEIGHT = 20;
+
+export const MINUTE_HEIGHT = SEGMENT_HEIGHT / 15;
+
+
+export function timeToMinutes(time: string) {
 
     const [
         hour,
@@ -12,34 +17,27 @@ export function timeToMinutes(time:string){
 
 
 
-export function timeToPosition(time:string){
+export function timeToPosition(time: string) {
 
     const minutes = timeToMinutes(time);
 
 
-    const segmentHeight = 20;
-
-
-    return (minutes / 15) * segmentHeight;
+    return minutes * MINUTE_HEIGHT;
 
 }
 
 
 
 export function eventHeight(
-    start:string,
-    end:string
-){
+    start: string,
+    end: string
+) {
 
     const duration =
-        timeToMinutes(end)
-        -
+        timeToMinutes(end) -
         timeToMinutes(start);
 
 
-
-    return (
-        duration / 15
-    ) * 20;
+    return duration * MINUTE_HEIGHT;
 
 }

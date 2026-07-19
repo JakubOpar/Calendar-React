@@ -2,32 +2,30 @@ import "./HourLabel.css";
 
 
 type Props = {
-    hour:number;
-    minute:number;
+    hour: number;
 };
 
 
-function HourLabel({hour,minute}:Props){
+function HourLabel({ hour }: Props) {
 
-
-    if(minute !== 0){
-
-        return (
-            <div className="hour-label empty">
-
-            </div>
-        );
-
-    }
+    const isFirst = hour === 0;
 
 
     return (
 
-        <div className="hour-label">
+        <span
+            className={
+                `hour-label ${
+                    isFirst
+                        ? "hour-label--first"
+                        : ""
+                }`
+            }
+        >
 
-            {String(hour).padStart(2,"0")}:00
+            {String(hour).padStart(2, "0")}:00
 
-        </div>
+        </span>
 
     );
 

@@ -1,22 +1,30 @@
 .hour-label {
 
-    width:70px;
+    height:80px;
 
-    padding-left:8px;
+    box-sizing:border-box;
 
-    padding-top:5px;
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:flex-end;
+
+    padding-right:10px;
+
+    padding-top:4px;
 
     font-size:12px;
 
-    color:#777;
+    color:#666;
 
-    border-right:1px solid #ddd;
+    border-top:1px solid #999;
 
 }
 
 
-.hour-label.empty {
+.hour-label--first {
 
-    color:transparent;
+    border-top:none;
 
 }
