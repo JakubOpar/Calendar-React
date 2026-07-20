@@ -1,27 +1,18 @@
-export type EventType =
-    | "work"
-    | "meeting"
-    | "personal";
-
-
 export type CalendarEvent = {
 
-    id: number;
+    id:number;
 
-    date: Date;
+    date:Date;
 
-    title: string;
+    title:string;
 
-    description?: string;
+    type:
+        | "work"
+        | "meeting"
+        | "personal";
 
-    type: EventType;
+    startTime?:string;
 
-    startTime?: string;
-
-    endTime?: string;
-
-    hasReminder: boolean;
-
-    reminderDatetime?: string;
+    endTime?:string;
 
 };

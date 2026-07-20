@@ -24,19 +24,31 @@ function CalendarCell({
 }: Props) {
 
 
-    const dayEvents = events.filter(event =>
+    const today = new Date();
 
-        event.date.getFullYear() === day.date.getFullYear()
-
-        &&
-
-        event.date.getMonth() === day.date.getMonth()
-
-        &&
-
-        event.date.getDate() === day.date.getDate()
-
+    today.setHours(
+        0,
+        0,
+        0,
+        0
     );
+
+
+    const currentDate =
+        new Date(day.date);
+
+    currentDate.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const isPast =
+        currentDate < today
+        &&
+        day.isCurrentMonth;
 
 
 
@@ -60,9 +72,16 @@ function CalendarCell({
                     ? "calendar-cell--today"
                     : ""
                 }
+
+                ${
+                    isPast
+                    ? "calendar-cell--past"
+                    : ""
+                }
             `}
 
         >
+
 
             <span className="calendar-cell-day">
 
@@ -76,7 +95,7 @@ function CalendarCell({
 
 
                 {
-                    dayEvents.map(event => (
+                    events.map(event => (
 
                         <EventBadge
 

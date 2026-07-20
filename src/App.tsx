@@ -9,6 +9,11 @@ import DayView from "./pages/DayView/DayView";
 
 import type { CalendarView } from "./types/calendar";
 
+import {
+    useEvents
+} from "./context/EventContext";
+
+
 
 function App() {
 
@@ -22,30 +27,50 @@ function App() {
 
 
 
+    const {
+        refreshEvents
+    } = useEvents();
+
+
+
+
     async function handleTestInsert() {
 
+
         try {
+
 
             await invoke(
                 "test_insert"
             );
 
 
+
+            await refreshEvents();
+
+
+
             console.log(
-                "Testowy event dodany"
+                "Testowy event dodany i odświeżony"
             );
 
 
+
         } catch(error) {
+
 
             console.error(
                 "Błąd dodawania eventu:",
                 error
             );
 
+
         }
 
+
     }
+
+
 
 
 
@@ -57,6 +82,7 @@ function App() {
             <Header />
 
 
+
             <button
                 onClick={handleTestInsert}
             >
@@ -65,7 +91,10 @@ function App() {
 
 
 
+
+
             {view === "month" && (
+
 
                 <MonthView
 
@@ -75,11 +104,16 @@ function App() {
 
                 />
 
+
             )}
 
 
 
+
+
+
             {view === "day" && (
+
 
                 <DayView
 
@@ -89,7 +123,11 @@ function App() {
 
                 />
 
+
             )}
+
+
+
 
 
         </div>

@@ -12,40 +12,67 @@ type Props = {
 };
 
 
-function DayView({ date, setView }: Props) {
+function DayView({
+    date,
+    setView
+}: Props) {
+
 
     return (
+
         <main className="day-view">
+
 
             <header className="day-view-header">
 
-                <button onClick={() => setView("month")}>
+
+                <button
+                    onClick={() => setView("month")}
+                >
                     Wróć
                 </button>
 
 
+
                 <h2>
+
                     {date.toLocaleDateString("pl-PL", {
+
                         weekday: "long",
+
                         year: "numeric",
+
                         month: "long",
+
                         day: "numeric"
+
                     })}
+
                 </h2>
+
 
             </header>
 
 
+
             <section className="day-view-content">
 
-                <TimeGrid />
+
+                <TimeGrid
+                    date={date}
+                />
+
 
                 <TaskPanel />
 
+
             </section>
 
+
         </main>
+
     );
+
 }
 
 

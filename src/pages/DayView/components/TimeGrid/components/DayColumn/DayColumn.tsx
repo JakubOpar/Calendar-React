@@ -4,7 +4,16 @@ import TimeSegment from "./TimeSegment/TimeSegment";
 import EventsLayer from "./EventsLayer/EventsLayer";
 
 
-function DayColumn(){
+type Props = {
+    date: Date;
+};
+
+
+
+function DayColumn({
+    date
+}: Props) {
+
 
     const segments = Array.from(
         { length: 24 * 4 },
@@ -23,8 +32,11 @@ function DayColumn(){
                     segments.map(segment => (
 
                         <TimeSegment
+
                             key={segment}
+
                             index={segment}
+
                         />
 
                     ))
@@ -33,7 +45,10 @@ function DayColumn(){
             </div>
 
 
-            <EventsLayer />
+
+            <EventsLayer
+                date={date}
+            />
 
 
         </div>

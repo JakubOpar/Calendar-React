@@ -4,7 +4,15 @@ import TimeAxis from "./components/TimeAxis/TimeAxis";
 import DayColumn from "./components/DayColumn/DayColumn";
 
 
-function TimeGrid() {
+type Props = {
+    date: Date;
+};
+
+
+function TimeGrid({
+    date
+}: Props) {
+
 
     return (
 
@@ -12,7 +20,11 @@ function TimeGrid() {
 
             <TimeAxis />
 
-            <DayColumn />
+
+            <DayColumn
+                date={date}
+            />
+
 
         </div>
 

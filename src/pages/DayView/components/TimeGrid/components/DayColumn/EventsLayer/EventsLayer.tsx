@@ -1,38 +1,64 @@
-import { useEffect, useState } from "react";
-
 import "./EventsLayer.css";
 
 import EventBlock from "../../EventBlock/EventBlock";
 
 import {
-    getEvents
-} from "../../../../../../../services/eventService";
-
-import type { CalendarEvent } from "../../../../../../../types/event";
+    useEvents
+} from "../../../../../../../context/EventContext";
 
 
-function EventsLayer() {
+type Props = {
 
+    date: Date;
 
-    const [events, setEvents] =
-        useState<CalendarEvent[]>([]);
+};
 
 
 
-    useEffect(() => {
-
-        getEvents()
-            .then(setEvents)
-            .catch(console.error);
-
-    }, []);
+function EventsLayer({
+    date
+}: Props) {
 
 
+    const {
+        events
+    } = useEvents();
 
-    const timedEvents = events.filter(
-        event =>
-            event.startTime &&
-            event.endTime
+
+
+    const dayEvents = events.filter(event => {
+
+
+        const eventDate = new Date(event.date);
+
+
+        return (
+
+            eventDate.getFullYear()
+                === date.getFullYear()
+
+            &&
+
+            eventDate.getMonth()
+                === date.getMonth()
+
+            &&
+
+            eventDate.getDate()
+                === date.getDate()
+
+        );
+
+    });
+
+
+
+    const timedEvents = dayEvents.filter(event =>
+
+        event.startTime !== undefined
+        &&
+        event.endTime !== undefined
+
     );
 
 
@@ -41,16 +67,21 @@ function EventsLayer() {
 
         <div className="events-layer">
 
+
             {
                 timedEvents.map(event => (
 
                     <EventBlock
+
                         key={event.id}
+
                         event={event}
+
                     />
 
                 ))
             }
+
 
         </div>
 

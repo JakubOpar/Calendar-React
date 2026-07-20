@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Event {
 
-    pub id: Option<i64>,
+    pub id: Option<i32>,
 
     pub title: String,
 
@@ -20,5 +20,6 @@ pub struct Event {
 
     pub has_reminder: bool,
 
-    pub reminder_datetime: Option<String>,
+    pub reminder_datetime: Option<String>
+
 }

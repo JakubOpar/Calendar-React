@@ -1,10 +1,10 @@
 import { invoke } from "@tauri-apps/api/core";
 
 import type { CalendarEvent } from "../types/event";
+import type { EventForm } from "../types/eventForm";
 
 
 export async function getEvents(): Promise<CalendarEvent[]> {
-
 
     const result = await invoke<any[]>(
         "get_events"
@@ -17,19 +17,13 @@ export async function getEvents(): Promise<CalendarEvent[]> {
 
         title: event.title,
 
-        description: event.description,
-
         date: new Date(event.date),
 
-        startTime: event.start_time,
+        startTime: event.start_time ?? undefined,
 
-        endTime: event.end_time,
+        endTime: event.end_time ?? undefined,
 
-        type: event.event_type,
-
-        hasReminder: event.has_reminder,
-
-        reminderDatetime: event.reminder_datetime
+        type: event.event_type
 
     }));
 
@@ -38,37 +32,14 @@ export async function getEvents(): Promise<CalendarEvent[]> {
 
 
 export async function createEvent(
-    event: CalendarEvent
+    event: EventForm
 ): Promise<void> {
 
 
     await invoke(
         "create_event",
         {
-            event: {
-
-                id: event.id,
-
-                title: event.title,
-
-                description: event.description,
-
-                date: event.date
-                    .toISOString()
-                    .split("T")[0],
-
-                start_time: event.startTime,
-
-                end_time: event.endTime,
-
-                event_type: event.type,
-
-                has_reminder: event.hasReminder,
-
-                reminder_datetime:
-                    event.reminderDatetime
-
-            }
+            event
         }
     );
 

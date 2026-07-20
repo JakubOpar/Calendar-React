@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
-
 import CalendarCell from "./CalendarCell";
+
 import { getWeekdayNames } from "../../utils/calendar";
 
 import {
-    getEvents
-} from "../../services/eventService";
+    useEvents
+} from "../../context/EventContext";
 
 import type { CalendarWeek } from "../../types/calendar";
-import type { CalendarEvent } from "../../types/event";
 
 import "./CalendarGrid.css";
 
 
 type Props = {
+
     matrix: CalendarWeek[];
+
     onDayClick: (date: Date) => void;
+
 };
 
 
@@ -26,38 +27,13 @@ function CalendarGrid({
 }: Props) {
 
 
-    const weekDays = getWeekdayNames();
+    const weekDays =
+        getWeekdayNames();
 
 
-    const [events, setEvents] =
-        useState<CalendarEvent[]>([]);
-
-
-
-    useEffect(() => {
-
-        getEvents()
-            .then(data => {
-
-                console.log(
-                    "Events from database:",
-                    data
-                );
-
-                setEvents(data);
-
-            })
-            .catch(error => {
-
-                console.error(
-                    "Cannot load events:",
-                    error
-                );
-
-            });
-
-
-    }, []);
+    const {
+        events
+    } = useEvents();
 
 
 
@@ -74,10 +50,15 @@ function CalendarGrid({
                     weekDays.map((day,i)=>(
 
                         <div
+
                             key={i}
+
                             className="calendar-header-cell"
+
                         >
+
                             {day}
+
                         </div>
 
                     ))
@@ -93,28 +74,56 @@ function CalendarGrid({
                 matrix.map((week,i)=>(
 
                     <div
+
                         key={i}
+
                         className="calendar-row"
+
                     >
 
                         {
-                            week.map((day,j)=>(
+                            week.map((day,j)=>{
 
-                                <CalendarCell
 
-                                    key={j}
+                                const dayEvents =
+                                    events.filter(event =>
 
-                                    day={day}
+                                        event.date.getFullYear()
+                                            === day.date.getFullYear()
 
-                                    events={events}
+                                        &&
 
-                                    onClick={() =>
-                                        onDayClick(day.date)
-                                    }
+                                        event.date.getMonth()
+                                            === day.date.getMonth()
 
-                                />
+                                        &&
 
-                            ))
+                                        event.date.getDate()
+                                            === day.date.getDate()
+
+                                    );
+
+
+
+                                return (
+
+                                    <CalendarCell
+
+                                        key={j}
+
+                                        day={day}
+
+                                        events={dayEvents}
+
+                                        onClick={() =>
+                                            onDayClick(day.date)
+                                        }
+
+                                    />
+
+                                );
+
+                            })
                         }
 
 
