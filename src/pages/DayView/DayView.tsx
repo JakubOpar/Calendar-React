@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 import type { CalendarView } from "../../types/calendar";
+import type { CalendarEvent } from "../../types/event";
 
 import "./DayView.css";
 
 import TimeGrid from "./components/TimeGrid/TimeGrid";
 import TaskPanel from "./components/TaskPanel/TaskPanel";
+import EventDetailsModal from "./components/EventDetailsModal/EventDetailsModal";
 
 
 type Props = {
@@ -12,10 +16,16 @@ type Props = {
 };
 
 
+
 function DayView({
     date,
     setView
 }: Props) {
+
+
+    const [selectedEvent, setSelectedEvent] =
+        useState<CalendarEvent | null>(null);
+
 
 
     return (
@@ -60,6 +70,7 @@ function DayView({
 
                 <TimeGrid
                     date={date}
+                    onEventClick={setSelectedEvent}
                 />
 
 
@@ -67,6 +78,26 @@ function DayView({
 
 
             </section>
+
+
+
+
+            {
+                selectedEvent && (
+
+                    <EventDetailsModal
+
+                        event={selectedEvent}
+
+                        onClose={() =>
+                            setSelectedEvent(null)
+                        }
+
+                    />
+
+                )
+            }
+
 
 
         </main>

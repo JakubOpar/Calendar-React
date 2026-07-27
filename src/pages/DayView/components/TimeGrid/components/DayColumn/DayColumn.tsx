@@ -3,15 +3,24 @@ import "./DayColumn.css";
 import TimeSegment from "./TimeSegment/TimeSegment";
 import EventsLayer from "./EventsLayer/EventsLayer";
 
+import type { CalendarEvent } from "../../../../../../types/event";
+
 
 type Props = {
+
     date: Date;
+
+    onEventClick: (
+        event: CalendarEvent
+    ) => void;
+
 };
 
 
 
 function DayColumn({
-    date
+    date,
+    onEventClick
 }: Props) {
 
 
@@ -47,7 +56,11 @@ function DayColumn({
 
 
             <EventsLayer
+
                 date={date}
+
+                onEventClick={onEventClick}
+
             />
 
 

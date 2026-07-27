@@ -2,9 +2,11 @@ export type CalendarEvent = {
 
     id:number;
 
-    date:Date;
-
     title:string;
+
+    description?:string;
+
+    date:Date;
 
     type:
         | "work"
@@ -14,5 +16,9 @@ export type CalendarEvent = {
     startTime?:string;
 
     endTime?:string;
+
+    hasReminder:boolean;
+
+    reminderDatetime?:string;
 
 };

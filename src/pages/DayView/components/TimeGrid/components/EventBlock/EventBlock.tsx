@@ -11,8 +11,13 @@ import "./EventBlock.css";
 
 
 type Props = {
+
     event: CalendarEvent;
+
+    onClick: () => void;
+
 };
+
 
 
 const eventTypeNames: Record<string, string> = {
@@ -26,7 +31,11 @@ const eventTypeNames: Record<string, string> = {
 };
 
 
-function EventBlock({ event }: Props) {
+
+function EventBlock({
+    event,
+    onClick
+}: Props) {
 
 
     const top = event.startTime
@@ -34,13 +43,17 @@ function EventBlock({ event }: Props) {
         : 0;
 
 
+
     const height =
         event.startTime && event.endTime
+
             ? eventHeight(
                 event.startTime,
                 event.endTime
             )
+
             : 40;
+
 
 
     const style: CSSProperties = {
@@ -52,20 +65,28 @@ function EventBlock({ event }: Props) {
     };
 
 
+
     return (
 
         <div
+
             className={
                 `event-block event-block--${event.type}`
             }
+
             style={style}
+
+            onClick={onClick}
+
         >
+
 
             <div className="event-block__type">
 
                 {eventTypeNames[event.type]}
 
             </div>
+
 
 
             <div className="event-block__title">
@@ -75,19 +96,27 @@ function EventBlock({ event }: Props) {
             </div>
 
 
+
+
             {
                 event.startTime &&
                 event.endTime &&
                 (
+
                     <div className="event-block__time">
 
                         {event.startTime}
+
                         {" - "}
+
                         {event.endTime}
 
                     </div>
+
                 )
             }
+
+
 
         </div>
 

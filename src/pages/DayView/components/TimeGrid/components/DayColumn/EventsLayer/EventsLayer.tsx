@@ -6,17 +6,24 @@ import {
     useEvents
 } from "../../../../../../../context/EventContext";
 
+import type { CalendarEvent } from "../../../../../../../types/event";
+
 
 type Props = {
 
     date: Date;
+
+    onEventClick: (
+        event: CalendarEvent
+    ) => void;
 
 };
 
 
 
 function EventsLayer({
-    date
+    date,
+    onEventClick
 }: Props) {
 
 
@@ -26,40 +33,30 @@ function EventsLayer({
 
 
 
-    const dayEvents = events.filter(event => {
+    const dayEvents = events.filter(event =>
 
+        event.date.getFullYear()
+            === date.getFullYear()
 
-        const eventDate = new Date(event.date);
-
-
-        return (
-
-            eventDate.getFullYear()
-                === date.getFullYear()
-
-            &&
-
-            eventDate.getMonth()
-                === date.getMonth()
-
-            &&
-
-            eventDate.getDate()
-                === date.getDate()
-
-        );
-
-    });
-
-
-
-    const timedEvents = dayEvents.filter(event =>
-
-        event.startTime !== undefined
         &&
-        event.endTime !== undefined
+
+        event.date.getMonth()
+            === date.getMonth()
+
+        &&
+
+        event.date.getDate()
+            === date.getDate()
 
     );
+
+
+
+    const timedEvents =
+        dayEvents.filter(event =>
+            event.startTime &&
+            event.endTime
+        );
 
 
 
@@ -76,6 +73,10 @@ function EventsLayer({
                         key={event.id}
 
                         event={event}
+
+                        onClick={() =>
+                            onEventClick(event)
+                        }
 
                     />
 
