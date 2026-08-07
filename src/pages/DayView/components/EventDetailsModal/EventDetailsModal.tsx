@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { CalendarEvent } from "../../../../types/event";
 
 import EditEventModal from "../EditEventModal/EditEventModal";
+import DeleteEventModal from "../DeleteEventModal/DeleteEventModal";
 
 import "./EventDetailsModal.css";
 
@@ -24,6 +25,9 @@ function EventDetailsModal({
 
 
     const [editMode, setEditMode] =
+        useState(false);
+
+    const [deleteMode, setDeleteMode] =
         useState(false);
 
 
@@ -131,6 +135,15 @@ function EventDetailsModal({
 
                         </button>
 
+                        <button
+                            className="event-details-delete"
+                            onClick={() =>
+                                setDeleteMode(true)
+                            }
+                        >
+                            Usuń
+                        </button>
+
 
 
                         <button
@@ -162,6 +175,22 @@ function EventDetailsModal({
 
                         onClose={() =>
                             setEditMode(false)
+                        }
+
+                    />
+
+                )
+            }
+
+            {
+                deleteMode && (
+
+                    <DeleteEventModal
+
+                        event={event}
+
+                        onClose={() =>
+                            setDeleteMode(false)
                         }
 
                     />
