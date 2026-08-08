@@ -20,7 +20,9 @@ pub fn run() {
         tauri::generate_handler![
         db_test,
         commands::events::create_event,
-        commands::events::get_events
+        commands::events::get_events,
+        commands::events::update_event,
+        commands::events::delete_event
     ]
 )
 

@@ -2,6 +2,10 @@ import { useState } from "react";
 
 import type { CalendarEvent } from "../../../../types/event";
 
+import { updateEvent } from "../../../../services/eventService";
+
+import { useEvents } from "../../../../context/EventContext";
+
 import "./EditEventModal.css";
 
 
@@ -11,59 +15,121 @@ type Props = {
 
     onClose: () => void;
 
-};
+    onSaved?: () => void;
 
+};
 
 
 function EditEventModal({
     event,
-    onClose
+    onClose,
+    onSaved
 }: Props) {
 
 
-    const [title,setTitle] =
+    const {
+        refreshEvents
+    } = useEvents();
+
+
+    const [title, setTitle] =
         useState(event.title);
 
 
-    const [startTime,setStartTime] =
+    const [startTime, setStartTime] =
         useState(event.startTime ?? "");
 
 
-    const [endTime,setEndTime] =
+    const [endTime, setEndTime] =
         useState(event.endTime ?? "");
 
 
-    const [type,setType] =
+    const [type, setType] =
         useState<
             "work" | "meeting" | "personal"
         >(event.type);
 
 
-
-    function handleSave(){
-
-        const updatedEvent = {
-
-            ...event,
-
-            title,
-
-            startTime,
-
-            endTime,
-
-            type
-
-        };
+    const [saving, setSaving] =
+        useState(false);
 
 
-        console.log(
-            "Zmiana eventu:",
-            updatedEvent
-        );
+
+    async function handleSave() {
 
 
-        onClose();
+        if (!title.trim()) {
+
+            alert(
+                "Tytuł wydarzenia jest wymagany"
+            );
+
+            return;
+
+        }
+
+
+        setSaving(true);
+
+
+        try {
+
+
+            const updatedEvent: CalendarEvent = {
+
+                ...event,
+
+                title: title.trim(),
+
+                startTime:
+                    startTime || undefined,
+
+                endTime:
+                    endTime || undefined,
+
+                type
+
+            };
+
+
+            await updateEvent(
+                updatedEvent
+            );
+
+
+            await refreshEvents();
+
+
+            if (onSaved) {
+
+                onSaved();
+
+            }
+            else {
+
+                onClose();
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "Błąd aktualizacji wydarzenia:",
+                error
+            );
+
+            alert(
+                "Nie udało się zapisać zmian"
+            );
+
+        }
+        finally {
+
+            setSaving(false);
+
+        }
 
     }
 
@@ -99,6 +165,8 @@ function EditEventModal({
                             )
                     }
 
+                    disabled={saving}
+
                 />
 
 
@@ -120,6 +188,8 @@ function EditEventModal({
                                 e.target.value
                             )
                     }
+
+                    disabled={saving}
 
                 />
 
@@ -143,6 +213,8 @@ function EditEventModal({
                             )
                     }
 
+                    disabled={saving}
+
                 />
 
 
@@ -159,9 +231,14 @@ function EditEventModal({
                     onChange={
                         e =>
                             setType(
-                                e.target.value as any
+                                e.target.value as
+                                    | "work"
+                                    | "meeting"
+                                    | "personal"
                             )
                     }
+
+                    disabled={saving}
 
                 >
 
@@ -188,17 +265,32 @@ function EditEventModal({
 
 
                     <button
+
                         onClick={onClose}
+
+                        disabled={saving}
+
                     >
                         Anuluj
+
                     </button>
 
 
 
                     <button
+
                         onClick={handleSave}
+
+                        disabled={saving}
+
                     >
-                        Zapisz zmiany
+
+                        {
+                            saving
+                                ? "Zapisywanie..."
+                                : "Zapisz zmiany"
+                        }
+
                     </button>
 
 
@@ -216,3 +308,4 @@ function EditEventModal({
 
 
 export default EditEventModal;
+

@@ -204,3 +204,74 @@ let conn = guard
     Ok(events)
 
 }
+
+#[tauri::command]
+pub fn update_event(event: Event) -> Result<(), String> {
+
+    let db = get_connection();
+
+    let binding = db
+        .lock()
+        .map_err(|e| e.to_string())?;
+
+    let conn = binding
+        .as_ref()
+        .ok_or_else(|| "Database connection is not available".to_string())?;
+
+    let id = event
+        .id
+        .ok_or_else(|| "Event ID is required".to_string())?;
+
+    conn.execute(
+        r#"
+        UPDATE events
+        SET
+            title = ?1,
+            description = ?2,
+            date = ?3,
+            start_time = ?4,
+            end_time = ?5,
+            event_type = ?6,
+            has_reminder = ?7,
+            reminder_datetime = ?8
+        WHERE id = ?9
+        "#,
+        (
+            event.title,
+            event.description,
+            event.date,
+            event.start_time,
+            event.end_time,
+            event.event_type,
+            event.has_reminder,
+            event.reminder_datetime,
+            id,
+        ),
+    )
+    .map_err(|e| e.to_string())?;
+
+    Ok(())
+}
+
+
+#[tauri::command]
+pub fn delete_event(id: i64) -> Result<(), String> {
+
+    let db = get_connection();
+
+    let binding = db
+        .lock()
+        .map_err(|e| e.to_string())?;
+
+    let conn = binding
+        .as_ref()
+        .ok_or_else(|| "Database connection is not available".to_string())?;
+
+    conn.execute(
+        "DELETE FROM events WHERE id = ?1",
+        [id],
+    )
+    .map_err(|e| e.to_string())?;
+
+    Ok(())
+}

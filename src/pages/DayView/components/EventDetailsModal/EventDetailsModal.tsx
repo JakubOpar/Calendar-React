@@ -170,13 +170,12 @@ function EventDetailsModal({
                 editMode && (
 
                     <EditEventModal
-
                         event={event}
-
-                        onClose={() =>
-                            setEditMode(false)
-                        }
-
+                        onClose={() => setEditMode(false)}
+                        onSaved={() => {
+                            setEditMode(false);
+                            onClose();
+                        }}
                     />
 
                 )
