@@ -192,6 +192,14 @@ function EventDetailsModal({
                             setDeleteMode(false)
                         }
 
+                        onDeleted={() => {
+
+                            setDeleteMode(false);
+
+                            onClose();
+
+                        }}
+
                     />
 
                 )
