@@ -4,18 +4,18 @@
 
     min-height: 70px;
 
-    border: 1px solid #222;
-    border-radius: 8px;
+    border: 1px solid var(--calendar-cell-border);
+    border-radius: var(--radius-medium);
 
-    background: white;
+    background: var(--calendar-cell-background);
 
-    transition: transform .25s;
+    transition: transform var(--transition-normal);
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 .calendar-cell:not(.calendar-cell--disabled):hover {
@@ -23,39 +23,33 @@
 }
 
 .calendar-cell--disabled {
-    background: #fafafa;
-    color: #c5c5c5;
-    border-color: #e8e8e8;
+    background: var(--calendar-disabled-background);
+    color: var(--calendar-disabled-text);
+    border-color: var(--calendar-disabled-border);
 }
 
 .calendar-cell--today {
-    background-color: #62c3d4;
+    background-color: var(--calendar-today-background);
 }
 
 .calendar-cell--past {
-    background: #dee7e7;
-    color: #777;
+    background: var(--calendar-past-background);
+    color: var(--calendar-past-text);
 }
 
-
 .calendar-cell-day {
-
-    font-size:14px;
-
-    font-weight:600;
-
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .calendar-events {
+    display: flex;
 
-    display:flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    gap: 4px;
 
-    gap:4px;
+    width: 100%;
 
-    width:100%;
-
-    margin-top:8px;
-
+    margin-top: 8px;
 }

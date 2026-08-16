@@ -1,30 +1,26 @@
 .hour-label {
+    height: 80px;
 
-    height:80px;
+    box-sizing: border-box;
 
-    box-sizing:border-box;
+    display: flex;
 
-    display:flex;
+    align-items: flex-start;
 
-    align-items:flex-start;
+    justify-content: flex-end;
 
-    justify-content:flex-end;
+    padding-right: 10px;
 
-    padding-right:10px;
+    padding-top: 4px;
 
-    padding-top:4px;
+    font-size: 12px;
 
-    font-size:12px;
+    color: var(--color-text-secondary);
 
-    color:#666;
-
-    border-top:1px solid #999;
-
+    border-top: 1px solid var(--time-grid-hour-line);
 }
 
 
 .hour-label--first {
-
-    border-top:none;
-
+    border-top: none;
 }

@@ -6,13 +6,20 @@
     align-items: center;
     justify-content: center;
 
-    border-radius: 8px;
-    background-color: #0687dd;
-    color: white;
+    border-radius: var(--radius-medium);
+
+    background-color: var(--color-primary);
+    color: var(--color-background);
 }
 
 .header__title {
     font-size: 22px;
+
     font-weight: 600;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
+
+    font-family:
+        Roboto,
+        Arial,
+        Helvetica,
+        sans-serif;
 }

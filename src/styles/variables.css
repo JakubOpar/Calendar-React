@@ -1,0 +1,115 @@
+:root {
+    /* =========================
+       Kolory główne
+       ========================= */
+
+    --color-primary: #0687dd;
+    --color-primary-hover: #0576c2;
+
+    --color-secondary: #62c3d4;
+
+    --color-background: #ffffff;
+    --color-background-soft: #fafafa;
+
+    --color-border: #dddddd;
+    --color-border-dark: #222222;
+    --color-border-light: #e8e8e8;
+
+    --color-text: #222222;
+    --color-text-secondary: #777777;
+    --color-text-muted: #c5c5c5;
+
+
+    /* =========================
+       Kalendarz
+       ========================= */
+
+    --calendar-cell-background: #ffffff;
+    --calendar-cell-border: #222222;
+
+    --calendar-disabled-background: #fafafa;
+    --calendar-disabled-text: #c5c5c5;
+    --calendar-disabled-border: #e8e8e8;
+
+    --calendar-today-background: #62c3d4;
+
+    --calendar-past-background: #dee7e7;
+    --calendar-past-text: #777777;
+
+
+    /* =========================
+   Wydarzenia
+   ========================= */
+
+    --event-work: red;
+    --event-meeting: #9b59b6;
+    --event-personal: #4caf50;
+
+
+    /* =========================
+       Modal / overlay
+       ========================= */
+
+    --overlay-background: rgba(0, 0, 0, 0.45);
+    --modal-background: #ffffff;
+    --modal-border: #e8e8e8;
+    --modal-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+
+
+    /* =========================
+       Formularze
+       ========================= */
+
+    --input-background: #ffffff;
+    --input-border: #cccccc;
+    --input-focus: #0687dd;
+    --input-focus-shadow: rgba(6, 135, 221, 0.15);
+
+
+    /* =========================
+       Zaokrąglenia
+       ========================= */
+
+    --radius-small: 6px;
+    --radius-medium: 8px;
+    --radius-large: 10px;
+
+
+    /* =========================
+       Animacje
+       ========================= */
+
+    --transition-fast: 0.2s;
+    --transition-normal: 0.25s;
+
+    /* =========================
+   Toolbar
+   ========================= */
+
+    --toolbar-border: var(--color-border);
+
+    --toolbar-add: var(--color-primary);
+
+    --toolbar-add-hover: var(--color-primary-hover);
+
+    /* =========================
+   Akcje
+   ========================= */
+
+    --color-danger: #d43b3b;
+    --color-danger-hover: #b92f2f;
+
+    /* =========================
+   Siatka czasu
+   ========================= */
+
+    --time-grid-line: #e5e5e5;
+    --time-grid-hour-line: #999999;
+
+    /* =========================
+   Oś czasu
+   ========================= */
+
+    --time-grid-axis-border: #cccccc;
+}

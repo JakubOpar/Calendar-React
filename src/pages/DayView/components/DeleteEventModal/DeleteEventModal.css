@@ -1,5 +1,4 @@
 .delete-event-overlay {
-
     position: fixed;
     inset: 0;
 
@@ -7,34 +6,30 @@
     justify-content: center;
     align-items: center;
 
-    background: rgba(0,0,0,.55);
+    background: var(--overlay-background);
 
     z-index: 4000;
-
 }
 
 .delete-event-modal {
-
     width: 420px;
 
-    background: white;
+    background: var(--modal-background);
 
-    border-radius: 10px;
+    border-radius: var(--radius-large);
 
     padding: 24px;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-
+    box-shadow: var(--modal-shadow);
 }
 
 .delete-event-modal h2 {
-
     margin-bottom: 18px;
 
+    color: var(--color-text);
 }
 
 .delete-event-footer {
-
     margin-top: 24px;
 
     display: flex;
@@ -42,25 +37,32 @@
     justify-content: flex-end;
 
     gap: 10px;
-
 }
 
 .delete-event-footer button {
-
     padding: 8px 18px;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: var(--radius-medium);
 
     cursor: pointer;
 
+    font-size: 14px;
+
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .delete-event-confirm {
+    background: var(--color-danger);
 
-    background: #d43b3b;
+    color: var(--color-background);
+}
 
-    color: white;
+.delete-event-confirm:hover {
+    background: var(--color-danger-hover);
 
+    transform: translateY(-1px);
 }

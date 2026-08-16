@@ -1,12 +1,15 @@
 .task-panel {
     display: flex;
+
     flex-direction: column;
 
-    border: 1px solid gray;
-    border-radius: 8px;
+    border: 1px solid var(--toolbar-border);
+
+    border-radius: var(--radius-medium);
 
     overflow: hidden;
 }
+
 
 .task-panel-header {
     padding: 12px;
@@ -17,10 +20,11 @@
 
     justify-content: center;
 
-    background: #0687dd;
+    background: var(--color-primary);
 
-    color: white;
+    color: var(--color-background);
 }
+
 
 .task-panel-content {
     flex: 1;

@@ -1,88 +1,85 @@
 .event-block {
+    position: absolute;
 
-    position:absolute;
+    left: 8px;
+    right: 8px;
 
-    left:8px;
-    right:8px;
+    z-index: 1;
 
-    pointer-events:auto;
+    display: flex;
 
-    display:flex;
-    flex-direction:column;
+    flex-direction: column;
 
-    padding:10px;
+    padding: 10px;
 
-    border-radius:10px;
+    border-radius: var(--radius-medium);
 
-    cursor:pointer;
+    color: var(--color-background);
 
-    z-index:1;
+    cursor: pointer;
 
-    color: white;
+    pointer-events: auto;
 
-    cursor:pointer;
-
+    transition:
+        transform var(--transition-fast),
+        filter var(--transition-fast);
 }
 
+
+.event-block:hover {
+    filter: brightness(0.92);
+
+    transform: scale(1.01);
+}
+
+
 .event-block__type {
+    font-size: 11px;
 
-    font-size:11px;
+    font-weight: 700;
 
-    font-weight:700;
+    letter-spacing: 0.5px;
 
-    letter-spacing:.5px;
+    text-transform: uppercase;
 
-    text-transform:uppercase;
-
-    opacity:.85;
-
+    opacity: 0.85;
 }
 
 
 .event-block__title {
+    margin-top: 4px;
 
-    margin-top:4px;
+    font-size: 15px;
 
-    font-size:15px;
+    font-weight: 600;
 
-    font-weight:600;
+    overflow: hidden;
 
-    overflow:hidden;
+    text-overflow: ellipsis;
 
-    text-overflow:ellipsis;
-
-    white-space:nowrap;
-
+    white-space: nowrap;
 }
 
 
 .event-block__time {
+    margin-top: auto;
 
-    margin-top:auto;
+    font-size: 12px;
 
-    font-size:12px;
-
-    opacity:.85;
-
+    opacity: 0.85;
 }
 
+
 .event-block--work {
-
-    background: red;
-        
-
+    background: var(--event-work);
 }
 
 
 .event-block--meeting {
-
-    background: green;
-
+    background: var(--event-meeting);
 }
 
 
 .event-block--personal {
-
-    background: blue;
-
+    background: var(--event-personal);
 }
