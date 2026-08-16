@@ -4,9 +4,9 @@ import EventBlock from "../../EventBlock/EventBlock";
 
 import {
     useEvents
-} from "../../../../../../../context/EventContext";
+} from "@/context/EventContext";
 
-import type { CalendarEvent } from "../../../../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
 
 type Props = {

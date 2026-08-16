@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import type { CalendarEvent } from "../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
 import EditEventModal from "../EditEventModal/EditEventModal";
 import DeleteEventModal from "../DeleteEventModal/DeleteEventModal";

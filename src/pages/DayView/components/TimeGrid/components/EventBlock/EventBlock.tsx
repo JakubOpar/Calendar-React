@@ -1,11 +1,11 @@
 import type { CSSProperties } from "react";
 
-import type { CalendarEvent } from "../../../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
 import {
     timeToPosition,
     eventHeight
-} from "../../../../../../utils/time";
+} from "@/utils/time";
 
 import "./EventBlock.css";
 

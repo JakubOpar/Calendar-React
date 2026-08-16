@@ -3,7 +3,7 @@ import "./DayColumn.css";
 import TimeSegment from "./TimeSegment/TimeSegment";
 import EventsLayer from "./EventsLayer/EventsLayer";
 
-import type { CalendarEvent } from "../../../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
 
 type Props = {

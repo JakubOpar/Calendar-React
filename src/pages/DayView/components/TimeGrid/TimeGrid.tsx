@@ -3,7 +3,7 @@ import "./TimeGrid.css";
 import TimeAxis from "./components/TimeAxis/TimeAxis";
 import DayColumn from "./components/DayColumn/DayColumn";
 
-import type { CalendarEvent } from "../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
 
 type Props = {

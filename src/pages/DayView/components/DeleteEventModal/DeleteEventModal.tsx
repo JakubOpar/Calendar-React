@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import type { CalendarEvent } from "../../../../types/event";
+import type { CalendarEvent } from "@/types/event";
 
-import { deleteEvent } from "../../../../services/eventService";
+import { deleteEvent } from "@/services/eventService";
 
-import { useEvents } from "../../../../context/EventContext";
+import { useEvents } from "@/context/EventContext";
 
 import "./DeleteEventModal.css";
 
