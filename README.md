@@ -1,32 +1,125 @@
-# React + TypeScript + Vite
+# Calendar React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Desktopowa aplikacja kalendarza zbudowana w oparciu o **React + TypeScript + Tauri + Rust + SQLite**.
 
-Currently, two official plugins are available:
+Projekt jest rozwijany jako aplikacja desktopowa przeznaczona do zarządzania wydarzeniami w kalendarzu.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Aktualnie projekt osiągnął pierwszy kamień milowy — **Beta 1.0**, w której dostępny jest podstawowy CRUD wydarzeń.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Status projektu
 
-## Expanding the Oxlint configuration
+**Wersja: Beta 1.0**
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Aktualnie działają podstawowe operacje na wydarzeniach:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- tworzenie wydarzeń,
+- wyświetlanie wydarzeń,
+- edycja wydarzeń,
+- usuwanie wydarzeń,
+- widok miesiąca,
+- widok dnia,
+- filtrowanie wydarzeń według daty,
+- wyświetlanie wydarzeń godzinowych,
+- podstawowe typy wydarzeń,
+- przypomnienia zapisane w strukturze wydarzenia,
+- komunikacja React ↔ Rust,
+- przechowywanie danych w SQLite.
+
+Projekt jest nadal rozwijany. Przed kolejnymi większymi funkcjonalnościami planowana jest refaktoryzacja, optymalizacja oraz poprawa zabezpieczeń.
+
+---
+
+# Technologie
+
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- CSS
+
+Frontend odpowiada za interfejs użytkownika, widoki kalendarza, formularze oraz komunikację z backendem Tauri.
+
+## Backend
+
+- Rust
+- Tauri
+- SQLite
+- rusqlite
+
+Rust odpowiada za operacje na bazie danych oraz udostępnia komendy wywoływane przez React.
+
+## Baza danych
+
+Dane wydarzeń przechowywane są w bazie:
+SQLite
+
+
+# Uruchomienie projektu
+## Wymagania
+
+Do uruchomienia projektu potrzebne są między innymi:
+
+- Node.js
+- npm
+- Rust
+- Cargo
+- Tauri CLI
+
+## Komendy
+instalacja zależności
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+uruchomienie
+```bash
+npm run tauri
+```
+
+# Struktura projektu
+
+```
+src/
+├── assets/
+│
+├── components/
+│   ├── Calendar/
+│   ├── Event/
+│   └── Header/
+│
+├── context/
+│
+├── pages/
+│   ├── DayView/
+│   │   └── components/
+│   │       ├── DeleteEventModal/
+│   │       ├── EditEventModal/
+│   │       ├── EventDetailsModal/
+│   │       │
+│   │       ├── TaskPanel/
+│   │       │   └── components/
+│   │       │       └── TaskItem/
+│   │       │
+│   │       └── TimeGrid/
+│   │           └── components/
+│   │               ├── DayColumn/
+│   │               │   ├── EventsLayer/
+│   │               │   └── TimeSegment/
+│   │               │
+│   │               ├── EventBlock/
+│   │               ├── HourLabel/
+│   │               └── TimeAxis/
+│   │
+│   ├── MonthView/
+│   ├── WeekView/
+│   └── YearView/
+│
+├── services/
+│
+├── types/
+│
+└── utils/
+```
